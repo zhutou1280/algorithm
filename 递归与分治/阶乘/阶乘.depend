@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1488363403 source:f:\algorithm program\递归与分治\阶乘\fibonacci.cpp
+
+1488364023 source:f:\algorithm program\递归与分治\阶乘\permulation.cpp
+	<iostream>
+
+1488363403 source:f:\algorithm program\递归与分治\阶乘\阶乘.cpp
+
+1488366387 source:f:\algorithm program\递归与分治\阶乘\maxinteger.cpp
+
+1488366716 source:f:\algorithm program\递归与分治\阶乘\main.cpp
+	<iostream>
+
+1488364023 f:\algorithm program\递归与分治\阶乘\permulation.cpp
+	<iostream>
+
+1488366008 f:\algorithm program\递归与分治\阶乘\maxinteger.cpp
+
+1488366008 f:\algorithm program\递归与分治\阶乘\maxinteger.h
+
+1488366008 source:f:\algorithm program\递归与分治\阶乘\maxinteger.h
+
