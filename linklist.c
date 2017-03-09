@@ -1,3 +1,5 @@
+#include"linklist.h"
+
 //linklist written in c
 
 
