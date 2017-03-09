@@ -1,38 +1,10 @@
 //linklist written in c
 
-/*ADT list 
-{
- *basic method:
- *             InitList()                       //construct an empty list
- *             DestoryList()                    //destory the list
- *             ClearList()                      //make the list to be empty
- *             ListEmpty()                      //figure out weather the list is empty
- *             ListLength()                     //return the length of list
- *             GetElem()                        //get the element in List
- *             LocateElem()                     //find the location of  list 
- *             PriorElem()                      //return the element prior to the input parameter
- *             NextElem()                       //return the element behind the input parameter
- *             ListInsert()                     //insert an element
- *             ListDelete()                     //delete an element
- *             ListTraverse()                   //traverse the list
-}
 
-*/
-
-
-//The implemation are as follows
-
-typedef  int ElemType ;
-typedef struct node{
-    ElemType data;
-    struct node* next;
-}Lnode, *LinkList;
-
-
-LinkList  InitList()
+LinkList InitList()
 {
      LinkList a=(LinkList*)malloc(sizeof(Lnode));
-     if(a)
+     if(a==NULL)
         {
             printf("fail to create a list");
             exit(0);
@@ -45,19 +17,40 @@ LinkList  InitList()
 }
 
 
+void CreateList(LinkList a,int n)
+{
+    LinkList q=a;
+    int i;
+    if(n<1)
+    {
+       printf("wrong number of elements\n");
+       return ;
+    }
+    for(i=0;i<n;i++)
+    {
+        LinkList p=(LinkList)malloc(sizeof(Lnode));
+        q->next=p;
+        printf("please input the %d data\n",i+1);
+        scanf("%d",&(p->data));
+        q=q->next;
+    }
+    q->next=NULL;
+
+}
+
 int ListEmpty(LinkList a)
 {
-    if(a->next)
+    if(a->next==NULL)
       return 0;
     else
-      return 1; 
+      return 1;
 }
 
 int ListLength(LinkList a)
 {
     int count=0;
-    linkList q=a;
-    if(q->next)
+    LinkList q=a;
+    while(q->next!=NULL)
       {
           count++;
           q=q->next;
@@ -66,15 +59,15 @@ int ListLength(LinkList a)
 }
 
 ElemType GetElem(LinkList a,int i)
-{   
+{
     int j=1;
     LinkList q=a->next;
     while(q&&j<i)
     {
         q=q->next;
         j++;
-    }   
-    if(!q||j>i) 
+    }
+    if(!q||j>i)
       {
           printf("the number %d element is not exist",i);
           exit(0);
@@ -138,24 +131,26 @@ ElemType NextElem(LinkList a,ElemType x)
 
 void ListInsert(LinkList a,int i,ElemType x)
 {
-    if(i<=0) 
+    if(i<=0)
     {
         printf("the position is not right");
         return ;
     }
+
     int j=0;
-    LinkList q=a->next;
+    LinkList p=a;
     LinkList s=(LinkList)malloc(sizeof(Lnode));
-    while(q&&j<i-1)
+    while(p!=NULL&&j<i-1)
     {
         p=p->next;
         ++j;
     }
-    if(!p||j>i-1)
+    if(p==NULL||j>i-1)
      {
-        print("can't insert in that place");
+        printf("can't insert in that place");
         return ;
      }
+
     s->data=x;
     s->next=p->next;
     p->next=s;
@@ -173,13 +168,16 @@ void ListDelete(LinkList a,int i)
     }
     p=a;
     j=0;
-    if(p&&j<i-1)
+    if(p!=NULL&&j<i-1)
      {
          p=p->next;
          j++;
      }
-     if(!(p->next)||j>i-1)
-      print("can't delete'");
+     if(p->next==NULL||j>i-1)
+      {
+          printf("can't delete'");
+        return ;
+      }
     q=p->next;
     p->next=q->next;
     free(q);
@@ -190,39 +188,44 @@ void ListDelete(LinkList a,int i)
 void ListTraverse(LinkList a)
 {
     LinkList q,prev=NULL;
-    while(a)
+    LinkList c=a->next;
+    while(c!=NULL)
     {
-        q=a->next;
-        a->next=prev;
-        prev=a;
-        a=q;
+        q=c->next;
+        c->next=prev;
+        prev=c;
+        c=q;
     }
-    a=prev;
+    c=prev;
+    a->next=c;
 }
 
 
-void DestoryList(Lnode* a) 
-{ 
-    LinkList p=a->next;
-    while(p)
+void DestoryList(Lnode* a)
+{
+    LinkList q=NULL,p=a;
+
+    while(p!=NULL)
     {
-       LinkList q;        
         q=p;
-        p=p->next;
-        free(q)  
+        p=q->next;
+        free(q);
     }
-    free a;
+     if(p==NULL)
+        printf("delete successfully");
 }
 
 void ClearList(LinkList a)
 {
     LinkList p=a->next;
-    while(p)
+    LinkList q;
+    while(p!=NULL)
     {
-       LinkList q;        
+        printf("ff\n");
+       
         q=p;
         p=p->next;
-        free(q)  
+        free(q);
     }
     a->next=NULL;
 }

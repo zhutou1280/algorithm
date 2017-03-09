@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1488811926 source:f:\algorithm program\动态规划\算法导论动态规划\main.cpp
+	<iostream>
+	<algorithm>
+	<cstring>
+
